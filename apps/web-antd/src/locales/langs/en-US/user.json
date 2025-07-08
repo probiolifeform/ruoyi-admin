@@ -1,0 +1,33 @@
+{
+    "query": {
+      "userName": "User Account",
+      "nickName": "User Nickname",
+      "status": "User Status",
+      "createTime": "Creation Time"
+    },
+    "column": {
+      "userName": "User Name",
+      "userBalance": "User Balance",
+      "avatar": "Avatar",
+      "createTime": "Creation Time",
+      "loginDate": "Last Login Time",
+      "status": "Status",
+      "action": "Actions"
+    },
+    "drawer": {
+      "userId": "User ID",
+      "userName": "User Account",
+      "password": "User Password",
+      "nickName": "User Nickname",
+      "phone": "Phone Number",
+      "email": "Email",
+      "sex": "Gender",
+      "status": "Status",
+      "postIds": "Positions",
+      "roleIds": "Roles",
+      "remark": "Remarks"
+    },
+    "listTitle": "User List",
+    "info": "User Information",
+    "resetPassword": "Reset Password"
+}

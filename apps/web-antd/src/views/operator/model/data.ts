@@ -2,29 +2,26 @@ import type { FormSchemaGetter } from '#/adapter/form';
 import type { VxeGridProps } from '#/adapter/vxe-table';
 
 import { DictEnum } from '@vben/constants';
-
+import { $t } from '@vben/locales';
 import { renderDict } from '#/utils/render';
 
 export const querySchema: FormSchemaGetter = () => [
   {
     component: 'Input',
     fieldName: 'modelName',
-    label: '模型名称',
+    label: $t('page.model.modelName'),
   },
   {
     component: 'RangePicker',
     fieldName: 'createTime',
-    label: '创建时间',
+    label: $t('page.model.createTime'),
   },
 ];
 
-// 需要使用i18n注意这里要改成getter形式 否则切换语言不会刷新
-// export const columns: () => VxeGridProps['columns'] = () => [
 export const columns: VxeGridProps['columns'] = [
   { type: 'checkbox', width: 60 },
-
   {
-    title: '模型分类',
+    title: $t('page.model.category'),
     field: 'category',
     slots: {
       default: ({ row }) => {
@@ -33,19 +30,19 @@ export const columns: VxeGridProps['columns'] = [
     },
   },
   {
-    title: '模型名称',
+    title: $t('page.model.modelName'),
     field: 'modelName',
   },
   {
-    title: '模型描述',
+    title: $t('page.model.modelDescribe'),
     field: 'modelDescribe',
   },
   {
-    title: '模型价格',
+    title: $t('page.model.modelPrice'),
     field: 'modelPrice',
   },
   {
-    title: '计费类型',
+    title: $t('page.model.modelType'),
     field: 'modelType',
     width: 120,
     slots: {
@@ -55,7 +52,7 @@ export const columns: VxeGridProps['columns'] = [
     },
   },
   {
-    title: '是否显示',
+    title: $t('page.model.modelShow'),
     field: 'modelShow',
     width: 120,
     slots: {
@@ -65,12 +62,11 @@ export const columns: VxeGridProps['columns'] = [
     },
   },
   {
-    title: '请求地址',
+    title: $t('page.model.apiHost'),
     field: 'apiHost',
   },
-
   {
-    title: '密钥',
+    title: $t('page.model.apiKey'),
     field: 'apiKey',
     width: '300px',
   },
@@ -78,7 +74,7 @@ export const columns: VxeGridProps['columns'] = [
     field: 'action',
     fixed: 'right',
     slots: { default: 'action' },
-    title: '操作',
+    title: $t('page.prompt.action'),
     width: 180,
   },
 ];

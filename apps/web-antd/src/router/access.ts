@@ -18,6 +18,8 @@ import { $t } from '#/locales';
 
 import { localMenuList } from './routes/local';
 
+import { menuTitleMap } from '#/locales/menuTitleMap'; // Add this import
+
 const forbiddenComponent = () => import('#/views/_core/fallback/forbidden.vue');
 const NotFoundComponent = () => import('#/views/_core/fallback/not-found.vue');
 
@@ -92,7 +94,8 @@ function backMenuToVbenMenu(
         hideInMenu: menu.hidden,
         icon: menu.meta?.icon,
         keepAlive: !menu.meta?.noCache,
-        title: menu.meta?.title,
+        // 使用映射表和$t进行翻译
+        title: menu.meta?.title ? $t(menuTitleMap[menu.meta.title] || menu.meta.title) : '',
       },
       name: menu.name,
       path: menu.path,

@@ -1,0 +1,33 @@
+{
+    "query": {
+      "userName": "用户账号",
+      "nickName": "用户昵称",
+      "status": "用户状态",
+      "createTime": "创建时间"
+    },
+    "column": {
+      "userName": "用户名称",
+      "userBalance": "用户余额",
+      "avatar": "头像",
+      "createTime": "创建时间",
+      "loginDate": "最后登录时间",
+      "status": "状态",
+      "action": "操作"
+    },
+    "drawer": {
+      "userId": "用户ID",
+      "userName": "用户账号",
+      "password": "用户密码",
+      "nickName": "用户昵称",
+      "phone": "手机号码",
+      "email": "邮箱",
+      "sex": "性别",
+      "status": "状态",
+      "postIds": "岗位",
+      "roleIds": "角色",
+      "remark": "备注"
+    },
+    "listTitle": "用户列表",
+    "info": "用户信息",
+    "resetPassword": "重置密码"
+}

@@ -1,0 +1,12 @@
+{
+  "officialWebsite": "Vben官方地址",
+  "notAvailable": "暂未开放",
+  "emailPlaceholder": "ann.vben@gmail.com",
+  "proTag": "Pro",
+  "notification": {
+    "clear": "清除",
+    "makeAllRead": "全部标记为已读",
+    "markRead": "标记为已读",
+    "viewAll": "查看全部"
+  }
+}

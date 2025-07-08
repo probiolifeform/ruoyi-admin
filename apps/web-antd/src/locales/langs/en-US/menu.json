@@ -1,26 +1,26 @@
 {
   "root": "Root",
   "system": {
-    "root": "System",
-    "user": "User",
-    "role": "Role",
-    "menu": "Menu",
-    "dept": "Department",
-    "post": "Post",
-    "dict": "Dictionary",
+    "root": "System Management",
+    "user": "User Management",
+    "role": "Role Management",
+    "menu": "Menu Management",
+    "dept": "Department Management",
+    "post": "Position Management",
+    "dict": "Dictionary Management",
     "config": "Parameter Settings",
     "notice": "Notifications",
     "log": {
-      "root": "Log",
+      "root": "Log Management",
       "operation": "Operation Log",
       "login": "Login Log"
     },
-    "oss": "File",
-    "client": "Client"
+    "oss": "File Management",
+    "client": "Client Management"
   },
   "tenant": {
-    "root": "Tenant",
-    "package": "Package"
+    "root": "Tenant Management",
+    "package": "Package Management"
   },
   "monitor": {
     "root": "System Monitoring",
@@ -36,20 +36,39 @@
   "workflow": {
     "root": "Workflow",
     "category": "Process Category",
-    "model": "Model",
+    "model": "Model Management",
     "define": "Process Definition",
     "monitor": {
       "root": "Process Monitoring",
       "instance": "Process Instance",
       "todo": "Pending Tasks"
     },
-    "form": "Form"
+    "form": "Form Management"
   },
   "task": {
     "root": "My Tasks",
-    "apply": "My Initiated Tasks",
-    "todo": "My Pending Tasks",
-    "done": "My Completed Tasks",
+    "apply": "Initiated by Me",
+    "todo": "My Pending",
+    "done": "My Completed",
     "cc": "My CC"
+  },
+  "operation": {
+    "root": "Operation Management",
+    "management": "User Management",
+    "prompt": {
+      "template": "Prompt Template"
+    },
+    "model": "System Model",
+    "message": "Chat Messages",
+    "order": "Payment Orders",
+    "knowledge": {
+      "base": "Knowledge Base"
+    },
+    "configuration": {
+      "info": "Configuration Info"
+    },
+    "file": {
+      "management": "File Management"
+    }
   }
 }

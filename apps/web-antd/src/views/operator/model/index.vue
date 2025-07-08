@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { VbenFormProps } from '@vben/common-ui';
-
 import type { VxeGridProps } from '#/adapter/vxe-table';
 import type { ModelForm } from '#/api/operator/model/model';
 
 import { Page, useVbenModal } from '@vben/common-ui';
+import { $t } from '@vben/locales';
 import { getVxePopupContainer } from '@vben/utils';
 
 import { Modal, Popconfirm, Space } from 'ant-design-vue';
@@ -25,28 +25,13 @@ const formOptions: VbenFormProps = {
   },
   schema: querySchema(),
   wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
-  // 处理区间选择器RangePicker时间格式 将一个字段映射为两个字段 搜索/导出会用到
-  // 不需要直接删除
-  // fieldMappingTime: [
-  //  [
-  //    'createTime',
-  //    ['params[beginTime]', 'params[endTime]'],
-  //    ['YYYY-MM-DD 00:00:00', 'YYYY-MM-DD 23:59:59'],
-  //  ],
-  // ],
 };
 
 const gridOptions: VxeGridProps = {
   checkboxConfig: {
-    // 高亮
     highlight: true,
-    // 翻页时保留选中状态
     reserve: true,
-    // 点击行选中
-    // trigger: 'row',
   },
-  // 需要使用i18n注意这里要改成getter形式 否则切换语言不会刷新
-  // columns: columns(),
   columns,
   height: 'auto',
   keepSource: true,
@@ -65,7 +50,6 @@ const gridOptions: VxeGridProps = {
   rowConfig: {
     keyField: 'id',
   },
-  // 表格全局唯一表示 保存列配置需要用到
   id: 'system-model-index',
 };
 
@@ -97,9 +81,9 @@ function handleMultiDelete() {
   const rows = tableApi.grid.getCheckboxRecords();
   const ids = rows.map((row: Required<ModelForm>) => row.id);
   Modal.confirm({
-    title: '提示',
+    title: $t('pages.common.hint'),
     okType: 'danger',
-    content: `确认删除选中的${ids.length}条记录吗？`,
+    content: $t('page.model.confirmDelete', { count: ids.length }),
     onOk: async () => {
       await modelRemove(ids);
       await tableApi.query();
@@ -110,7 +94,7 @@ function handleMultiDelete() {
 function handleDownloadExcel() {
   commonDownloadExcel(
     modelExport,
-    '聊天模型数据',
+    $t('page.model.list'),
     tableApi.formApi.form.values,
     {
       fieldMappingTime: formOptions.fieldMappingTime,
@@ -121,7 +105,7 @@ function handleDownloadExcel() {
 
 <template>
   <Page :auto-content-height="true">
-    <BasicTable table-title="聊天模型列表">
+    <BasicTable :table-title="$t('page.model.list')">
       <template #toolbar-tools>
         <Space>
           <a-button

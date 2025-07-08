@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "login": "登錄",
+    "register": "註冊",
+    "codeLogin": "驗證碼登錄",
+    "qrcodeLogin": "二維碼登錄",
+    "forgetPassword": "忘記密碼",
+    "oauthLogin": "第三方登錄"
+  },
+  "dashboard": {
+    "title": "概覽",
+    "analytics": "分析頁",
+    "workspace": "工作台"
+  },
+  "prompt": {
+    "templateName": "提示詞模板名稱",
+    "templateContent": "提示詞模板內容",
+    "category": "提示詞分類",
+    "primaryKey": "主鍵",
+    "remark": "備註",
+    "action": "操作",
+    "list": "提示詞模板列表"
+  },
+  "model": {
+    "modelName": "模型名稱",
+    "createTime": "創建時間",
+    "category": "模型分類",
+    "modelDescribe": "模型描述",
+    "modelPrice": "模型價格",
+    "modelType": "計費類型",
+    "modelShow": "是否顯示",
+    "apiHost": "請求地址",
+    "apiKey": "密鑰",
+    "list": "聊天模型列表",
+    "confirmDelete": "確認刪除選中的{count}條記錄嗎？"
+  }
+}

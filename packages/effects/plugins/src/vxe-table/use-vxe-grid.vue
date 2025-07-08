@@ -27,7 +27,7 @@ import {
 
 import { usePriorityValues } from '@vben/hooks';
 import { EmptyIcon } from '@vben/icons';
-import { $t } from '@vben/locales';
+import { $t, i18n } from '@vben/locales'; // Use i18n for reactivity
 import { usePreferences } from '@vben/preferences';
 import { cloneDeep, cn, isEqual, mergeWithArrayOverride } from '@vben/utils';
 
@@ -85,7 +85,6 @@ const [Form, formApi] = useTableForm({
     await formApi.resetForm();
     const formValues = await formApi.getValues();
     formApi.setLatestSubmissionValues(formValues);
-    // 如果值发生了变化，submitOnChange会触发刷新。所以只在submitOnChange为false或者值没有发生变化时，手动刷新
     if (isEqual(prevValues, formValues) || !formOptions.value?.submitOnChange) {
       props.api.reload(formValues);
     }
@@ -97,9 +96,8 @@ const [Form, formApi] = useTableForm({
   },
   showCollapseButton: true,
   submitButtonOptions: {
-    content: computed(() => $t('common.search')),
+    content: computed(() => $t('pages.common.search')),
   },
-  // enter提交
   submitOnEnter: true,
   wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
 });
@@ -124,9 +122,8 @@ const toolbarOptions = computed(() => {
     icon: 'vxe-icon-search',
     circle: true,
     status: showSearchForm.value ? 'primary' : undefined,
-    title: $t('common.search'),
+    title: computed(() => $t('pages.common.search')),
   };
-  // 将搜索按钮合并到用户配置的toolbarConfig.tools中
   const toolbarConfig: VxeGridPropTypes.ToolbarConfig = {
     tools: (gridOptions.value?.toolbarConfig?.tools ??
       []) as VxeToolbarPropTypes.ToolConfig[],
@@ -141,8 +138,6 @@ const toolbarOptions = computed(() => {
     return { toolbarConfig };
   }
 
-  // 强制使用固定的toolbar配置，不允许用户自定义
-  // 减少配置的复杂度，以及后续维护的成本
   toolbarConfig.slots = {
     ...(slotActions || showTableTitle.value
       ? { buttons: TOOLBAR_ACTIONS }
@@ -167,7 +162,6 @@ const options = computed(() => {
   if (mergedOptions.proxyConfig) {
     const { ajax } = mergedOptions.proxyConfig;
     mergedOptions.proxyConfig.enabled = !!ajax;
-    // 不自动加载数据, 由组件控制
     mergedOptions.proxyConfig.autoLoad = false;
   }
 
@@ -259,37 +253,29 @@ async function init() {
     toRaw(gridOptions.value),
     toRaw(globalGridConfig),
   );
-  // 内部主动加载数据，防止form的默认值影响
   const autoLoad = defaultGridOptions.proxyConfig?.autoLoad;
   const enableProxyConfig = options.value.proxyConfig?.enabled;
   if (enableProxyConfig && autoLoad) {
-    // 第一次拿到的是readonly的数据 如果需要修改 需要cloneDeep
     props.api.grid.commitProxy?.(
       '_init',
       cloneDeep(formOptions.value)
         ? (cloneDeep(await formApi.getValues()) ?? {})
         : {},
     );
-    // props.api.reload(formApi.form?.values ?? {});
   }
 
-  // form 由 vben-form代替，所以不适配formConfig，这里给出警告
   const formConfig = gridOptions.value?.formConfig;
-  // 处理某个页面加载多个Table时，第2个之后的Table初始化报出警告
-  // 因为第一次初始化之后会把defaultGridOptions和gridOptions合并后缓存进State
   if (formConfig && formConfig.enabled) {
     console.warn(
       '[Vben Vxe Table]: The formConfig in the grid is not supported, please use the `formOptions` props',
     );
   }
   props.api?.setState?.({ gridOptions: defaultGridOptions });
-  // form 由 vben-form 代替，所以需要保证query相关事件可以拿到参数
   extendProxyOptions(props.api, defaultGridOptions, () =>
     formApi.getLatestSubmissionValues(),
   );
 }
 
-// formOptions支持响应式
 watch(
   formOptions,
   () => {
@@ -312,6 +298,12 @@ watch(
 
 const isCompactForm = computed(() => {
   return formApi.getState()?.compact;
+});
+
+// Add watch for locale changes
+watch(() => i18n.global.locale.value, async (newLocale) => {
+  console.log(`Updating grid locale to: ${newLocale}`);
+  await props.api.reload(); // Reload grid on locale change
 });
 
 onMounted(() => {
@@ -341,7 +333,6 @@ onUnmounted(() => {
       v-bind="options"
       v-on="events"
     >
-      <!-- 左侧操作区域或者title -->
       <template v-if="showToolbar" #toolbar-actions="slotProps">
         <slot v-if="showTableTitle" name="table-title">
           <div class="mr-1 pl-1 text-[1rem]">
@@ -353,8 +344,6 @@ onUnmounted(() => {
         </slot>
         <slot name="toolbar-actions" v-bind="slotProps"> </slot>
       </template>
-
-      <!-- 继承默认的slot -->
       <template
         v-for="slotName in delegatedSlots"
         :key="slotName"
@@ -370,12 +359,10 @@ onUnmounted(() => {
           class="ml-2"
           v-if="gridOptions?.toolbarConfig?.search && !!formOptions"
           :status="showSearchForm ? 'primary' : undefined"
-          :title="$t('common.search')"
+          :title="computed(() => $t('pages.common.search'))"
           @click="onSearchBtnClick"
         />
       </template>
-
-      <!-- form表单 -->
       <template #form>
         <div
           v-if="formOptions"
@@ -413,17 +400,15 @@ onUnmounted(() => {
           ></div>
         </div>
       </template>
-      <!-- loading -->
       <template #loading>
         <slot name="loading">
           <VbenLoading :spinning="true" />
         </slot>
       </template>
-      <!-- 统一控状态 -->
       <template #empty>
         <slot name="empty">
           <EmptyIcon class="mx-auto" />
-          <div class="mt-2">{{ $t('common.noData') }}</div>
+          <div class="mt-2">{{ $t('pages.common.noData') }}</div>
         </slot>
       </template>
     </VxeGrid>

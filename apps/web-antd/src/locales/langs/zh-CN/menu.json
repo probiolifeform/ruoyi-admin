@@ -51,5 +51,24 @@
     "todo": "我的待办",
     "done": "我的已办",
     "cc": "我的抄送"
+  },
+  "operation": {
+    "root": "运营管理",
+    "management": "用户管理",
+    "prompt": {
+      "template": "提示词模板"
+    },
+    "model": "系统模型",
+    "message": "聊天消息",
+    "order": "支付订单",
+    "knowledge": {
+      "base": "知识库管理"
+    },
+    "configuration": {
+      "info": "配置信息"
+    },
+    "file": {
+      "management": "文件管理"
+    }
   }
 }

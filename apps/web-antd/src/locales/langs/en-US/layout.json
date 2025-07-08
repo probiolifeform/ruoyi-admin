@@ -1,0 +1,12 @@
+{
+  "officialWebsite": "Vben Official Website",
+  "notAvailable": "Not Available Yet",
+  "emailPlaceholder": "ann.vben@gmail.com",
+  "proTag": "Pro",
+  "notification": {
+    "clear": "Clear",
+    "makeAllRead": "Mark All as Read",
+    "markRead": "Mark as Read",
+    "viewAll": "View All"
+  }
+}

@@ -1,61 +1,61 @@
 import type { FormSchemaGetter } from '#/adapter/form';
-import type { VxeGridProps } from '#/adapter/vxe-table';
+  import type { VxeGridProps } from '#/adapter/vxe-table';
 
-import { DictEnum } from '@vben/constants';
+  import { DictEnum } from '@vben/constants';
+  import { $t } from '@vben/locales'; // Revert to $t
+  import { renderDict } from '#/utils/render';
 
-import { renderDict } from '#/utils/render';
+  export const querySchema: FormSchemaGetter = () => [
+    {
+      component: 'Input',
+      fieldName: 'templateName',
+      label: $t('page.prompt.templateName'),
+    },
+    {
+      component: 'Input',
+      fieldName: 'templateContent',
+      label: $t('page.prompt.templateContent'),
+    },
+    {
+      component: 'Input',
+      fieldName: 'category',
+      label: $t('page.prompt.category'),
+    },
+  ];
 
-export const querySchema: FormSchemaGetter = () => [
-  {
-    component: 'Input',
-    fieldName: 'templateName',
-    label: '提示词模板名称',
-  },
-  {
-    component: 'Input',
-    fieldName: 'templateContent',
-    label: '提示词模板内容',
-  },
-  {
-    component: 'Input',
-    fieldName: 'category',
-    label: '提示词分类',
-  },
-];
-
-export const columns: VxeGridProps['columns'] = [
-  { type: 'checkbox', width: 60 },
-  {
-    title: '主键',
-    field: 'id',
-  },
-  {
-    title: '提示词模板名称',
-    field: 'templateName',
-  },
-  {
-    title: '提示词模板内容',
-    field: 'templateContent',
-  },
-  {
-    title: '提示词分类',
-    field: 'category',
-    width: 120,
-    slots: {
-      default: ({ row }) => {
-        return renderDict(row.category, DictEnum.PROMPT_TEMPLATE_TYPE);
+  export const columns: VxeGridProps['columns'] = [
+    { type: 'checkbox', width: 60 },
+    {
+      title: $t('page.prompt.primaryKey'),
+      field: 'id',
+    },
+    {
+      title: $t('page.prompt.templateName'),
+      field: 'templateName',
+    },
+    {
+      title: $t('page.prompt.templateContent'),
+      field: 'templateContent',
+    },
+    {
+      title: $t('page.prompt.category'),
+      field: 'category',
+      width: 120,
+      slots: {
+        default: ({ row }) => {
+          return renderDict(row.category, DictEnum.PROMPT_TEMPLATE_TYPE);
+        },
       },
     },
-  },
-  {
-    title: '备注',
-    field: 'remark',
-  },
-  {
-    field: 'action',
-    fixed: 'right',
-    slots: { default: 'action' },
-    title: '操作',
-    width: 180,
-  },
-];
+    {
+      title: $t('page.prompt.remark'),
+      field: 'remark',
+    },
+    {
+      field: 'action',
+      fixed: 'right',
+      slots: { default: 'action' },
+      title: $t('page.prompt.action'),
+      width: 180,
+    },
+  ];

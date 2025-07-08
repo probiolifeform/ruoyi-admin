@@ -11,5 +11,27 @@
     "title": "概览",
     "analytics": "分析页",
     "workspace": "工作台"
+  },
+  "prompt": {
+    "templateName": "提示词模板名称",
+    "templateContent": "提示词模板内容",
+    "category": "提示词分类",
+    "primaryKey": "主键",
+    "remark": "备注",
+    "action": "操作",
+    "list": "提示词模板列表"
+  },
+  "model": {
+    "modelName": "模型名称",
+    "createTime": "创建时间",
+    "category": "模型分类",
+    "modelDescribe": "模型描述",
+    "modelPrice": "模型价格",
+    "modelType": "计费类型",
+    "modelShow": "是否显示",
+    "apiHost": "请求地址",
+    "apiKey": "密钥",
+    "list": "聊天模型列表",
+    "confirmDelete": "确认删除选中的{count}条记录吗？"
   }
 }

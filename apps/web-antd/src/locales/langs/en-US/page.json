@@ -11,5 +11,27 @@
     "title": "Dashboard",
     "analytics": "Analytics",
     "workspace": "Workspace"
+  },
+  "prompt": {
+    "templateName": "Prompt Template Name",
+    "templateContent": "Prompt Template Content",
+    "category": "Prompt Template Category",
+    "primaryKey": "Primary Key",
+    "remark": "Remark",
+    "action": "Action",
+    "list": "Prompt Template List"
+  },
+  "model": {
+    "modelName": "Model Name",
+    "createTime": "Creation Time",
+    "category": "Model Category",
+    "modelDescribe": "Model Description",
+    "modelPrice": "Model Price",
+    "modelType": "Billing Type",
+    "modelShow": "Display Status",
+    "apiHost": "Request Address",
+    "apiKey": "API Key",
+    "list": "Chat Model List",
+    "confirmDelete": "Confirm deletion of the selected {count} records?"
   }
 }
